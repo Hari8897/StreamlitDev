@@ -154,7 +154,7 @@ if uploadedFile is not None:
         st.subheader("Correlation Heatmap")
         fig_corr, ax_corr = plt.subplots()
         sns.heatmap(df.corr(), annot=True, cmap='coolwarm', ax=ax_corr)
-        st.pyplot(fig_corr)
+        st.pyplot(fig_corr)     
 
         # Model
         target_col = st.selectbox("Select target column for Linear Regression", df.columns)
@@ -166,3 +166,4 @@ if uploadedFile is not None:
         st.download_button("📥 Download Processed Data", csv, "processed_data.csv", "text/csv")
     else:
         st.error("Uploaded file is not a valid DataFrame.")
+
