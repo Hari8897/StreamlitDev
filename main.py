@@ -151,10 +151,17 @@ if uploadedFile is not None:
         st.write(df.describe())
 
         # Correlation heatmap
-        st.subheader("Correlation Heatmap")
-        fig_corr, ax_corr = plt.subplots()
-        sns.heatmap(df.corr(), annot=True, cmap='coolwarm', ax=ax_corr)
-        st.pyplot(fig_corr)     
+        # Set up layout sliders
+        width = st.slider("Select heatmap width", 400, 1500, 750)
+        height = st.slider("Select heatmap height", 400, 1500, 750)
+
+        # Basic plot config
+        sns.set_theme(style="whitegrid", font_scale=1.2)
+        fig, ax = plt.subplots(figsize=(width/100, height/100))
+        sns.heatmap(df.corr(), annot=True, cmap="coolwarm", ax=ax)
+
+        st.pyplot(fig)
+            
 
         # Model
         target_col = st.selectbox("Select target column for Linear Regression", df.columns)
